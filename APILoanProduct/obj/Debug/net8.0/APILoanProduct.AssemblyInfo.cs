@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("APILoanProduct")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5253f2e83e51fa6d62d573f85b489d2624e92727")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9862e4e0768b419a1d0e8eb444208521c793bf00")]
 [assembly: System.Reflection.AssemblyProductAttribute("APILoanProduct")]
 [assembly: System.Reflection.AssemblyTitleAttribute("APILoanProduct")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

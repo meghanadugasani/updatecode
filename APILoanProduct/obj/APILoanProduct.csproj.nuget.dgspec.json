@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\yashw\\source\\repos\\gitmamrepo\\APILoanProduct\\APILoanProduct\\APILoanProduct.csproj": {}
+    "C:\\Users\\Admin\\OneDrive\\Documents\\GROUP-PROJECT-KANINI-FIGMA-main_(2)[2]\\GROUP-PROJECT-KANINI-FIGMA-main\\GROUP-PROJECT-KANINI-FIGMA-main\\APILoanProduct\\APILoanProduct.csproj": {}
   },
   "projects": {
-    "C:\\Users\\yashw\\source\\repos\\gitmamrepo\\APILoanProduct\\APILoanProduct\\APILoanProduct.csproj": {
+    "C:\\Users\\Admin\\OneDrive\\Documents\\GROUP-PROJECT-KANINI-FIGMA-main_(2)[2]\\GROUP-PROJECT-KANINI-FIGMA-main\\GROUP-PROJECT-KANINI-FIGMA-main\\APILoanProduct\\APILoanProduct.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\yashw\\source\\repos\\gitmamrepo\\APILoanProduct\\APILoanProduct\\APILoanProduct.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\OneDrive\\Documents\\GROUP-PROJECT-KANINI-FIGMA-main_(2)[2]\\GROUP-PROJECT-KANINI-FIGMA-main\\GROUP-PROJECT-KANINI-FIGMA-main\\APILoanProduct\\APILoanProduct.csproj",
         "projectName": "APILoanProduct",
-        "projectPath": "C:\\Users\\yashw\\source\\repos\\gitmamrepo\\APILoanProduct\\APILoanProduct\\APILoanProduct.csproj",
-        "packagesPath": "C:\\Users\\yashw\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\yashw\\source\\repos\\gitmamrepo\\APILoanProduct\\APILoanProduct\\obj\\",
+        "projectPath": "C:\\Users\\Admin\\OneDrive\\Documents\\GROUP-PROJECT-KANINI-FIGMA-main_(2)[2]\\GROUP-PROJECT-KANINI-FIGMA-main\\GROUP-PROJECT-KANINI-FIGMA-main\\APILoanProduct\\APILoanProduct.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Admin\\OneDrive\\Documents\\GROUP-PROJECT-KANINI-FIGMA-main_(2)[2]\\GROUP-PROJECT-KANINI-FIGMA-main\\GROUP-PROJECT-KANINI-FIGMA-main\\APILoanProduct\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\yashw\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -88,7 +88,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
