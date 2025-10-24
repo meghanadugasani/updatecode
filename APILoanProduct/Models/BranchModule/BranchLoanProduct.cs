@@ -6,17 +6,13 @@ namespace APILoanProduct.Models.BranchModule
     public class BranchLoanProduct
     {
         [Key]
-        public int Id { get; set; }
-
+        public int BranchLoanProductId { get; set; }
         public int BranchId { get; set; }
-        public Branch Branch { get; set; }
-
-        public string ProductId { get; set; }
-        public LoanProduct LoanProduct { get; set; }
-
+        public Branch? Branch { get; set; } 
+        public Guid? ProductId { get; set; }
+        public LoanProduct? LoanProduct { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public DateTime AssignedDate { get; set; }
-        public bool IsActive { get; set; }
+        public bool IsActive { get; set; } // weather an loan product is avaliable still 
     }
-
-
 }

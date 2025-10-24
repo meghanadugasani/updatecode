@@ -6,20 +6,20 @@ namespace APILoanProduct.Models
     public class LoanDocuments
     {
         [Key]
-        public string DocumentId { get; set; }
-        [Required]
-        public string AddressProof { get; set; }
-        [Required]
-        public string IncomeProoof { get; set; }
-        [Required]
-        public string IdentityProof { get; set; }
-        
-        public string AdditionalDocuments { get; set; }
+        public Guid DocumentId { get; set; }=Guid.NewGuid();
+        [MaxLength(200)]
+        public string? AddressProof { get; set; }
+        [MaxLength(200)]
+        public string? IncomeProof { get; set; }
+        [MaxLength(200)]
+        public string? IdentityProof { get; set; }
+        [MaxLength(500,ErrorMessage ="Maximum of document character reached 500")]
+        public string? AdditionalDocuments { get; set; }
 
 
-        public string ProductId { get; set; }
+        public Guid ProductId { get; set; }
         [ForeignKey("ProductId")]
-        public LoanProduct LoanProduct { get; set; }
+        public LoanProduct? LoanProduct { get; set; }
 
     }
 }

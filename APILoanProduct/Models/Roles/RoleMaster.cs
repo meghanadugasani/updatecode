@@ -8,9 +8,12 @@ namespace APILoanProduct.Models.Roles
         public int RoleId { get; set; }
 
         [Required]
-        public string RoleName { get; set; } // "Admin", "BranchManager", "User"
+        public RoleTypes RoleName { get; set; }// "Admin", "BranchManager", "User"
 
-        public ICollection<UserMaster> Users { get; set; }
+        public ICollection<UserMaster>? Users { get; set; }
+
+        // Role_Name = RoleMaster.Role_Types.Admin so now when in the UI front 
     }
-
+    
 }
+

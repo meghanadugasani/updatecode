@@ -7,24 +7,27 @@ namespace APILoanProduct.Models.Roles
     public class UserMaster
     {
         [Key]
-        public int UserId { get; set; }
+        public Guid UserId { get; set; }=Guid.NewGuid();
 
         [Required]
-        public string Username { get; set; }
+        [MaxLength(50)]
+        [RegularExpression(@"^[a-zA-Z\s]+$")] 
+        public string? UserName { get; set; } // takes only letters no numbers
 
-        [Required]
-        public string PasswordHash { get; set; } // store hashed passwords
+        public string? UserPasswordHash { get; set; }
 
-        [Required]
-        public string Email { get; set; }
+        public string? UserEmailId { get; set; }
 
-        public string Phone { get; set; }
+        public string? UserPhoneNo { get; set; }
+
+        [Column(TypeName = "decimal(18,2)")]
+
+        public Decimal? UserBalance { get; set; }
 
         // FK to Role
         public int RoleId { get; set; }
         [ForeignKey("RoleId")]
-        public RoleMaster Role { get; set; }
-        public ICollection<Branch> ManagedBranches { get; set; }
+        public RoleMaster? Role { get; set; }
+        public ICollection<Branch>? ManagedBranches { get; set; }
     }
-
 }

@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using APILoanProduct.Models.BranchModule;
+using APILoanProduct.Models.Roles;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace APILoanProduct.Models
@@ -6,13 +8,16 @@ namespace APILoanProduct.Models
     public class ProductAvailability
     {
         [Key]
-        public string AvailabilityId { get; set; }
+        public Guid AvailabilityId { get; set; }=Guid.NewGuid();
         
-        public string BranchId { get; set; }
-        public string ProductAvailabilityTo { get; set; }
+        public int BranchId { get; set; }
+        [ForeignKey("BranchId")]// to which branch its avaliable to multiple option select
+        public Branch? Branch { get; set; }
+        public LoanProductAvaliable? ProductAvailabilityto { get; set; } // group, Individual, client  and for enum no need data anotations
 
-        public string ProductId { get; set; }
+        public Guid ProductId { get; set; }
         [ForeignKey("ProductId")]
-        public LoanProduct LoanProduct { get; set; }
+
+        public LoanProduct? LoanProduct { get; set; }
     }
 }
