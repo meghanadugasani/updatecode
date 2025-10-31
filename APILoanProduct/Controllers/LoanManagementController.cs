@@ -93,10 +93,15 @@ namespace APILoanProduct.Controllers
         }
 
         [HttpGet("documents")]
-        public async Task<IActionResult> GetAllDocuments()
+        public async Task<IActionResult> GetAllDocuments([FromQuery] Guid? userId = null, [FromQuery] string? role = null)
         {
-            var entities = await _documentService.GetAllAsync();
-            return Ok(entities);
+            if (userId.HasValue && !string.IsNullOrEmpty(role))
+            {
+                var entities = await _documentService.GetDocumentsByRoleAsync(userId.Value, role);
+                return Ok(entities);
+            }
+            var allEntities = await _documentService.GetAllAsync();
+            return Ok(allEntities);
         }
 
         [HttpGet("documents/user/{userId}")]
@@ -106,11 +111,126 @@ namespace APILoanProduct.Controllers
             return Ok(entities);
         }
 
-        [HttpPost("documents")]
-        public async Task<IActionResult> CreateDocument([FromBody] LoanApplicationDocumentsCreateDto dto)
+        [HttpGet("documents/my-documents/{userId}/{role}")]
+        public async Task<IActionResult> GetMyDocuments(Guid userId, string role)
         {
-            var entity = await _documentService.CreateAsync(dto);
-            return Ok(entity);
+            var entities = await _documentService.GetDocumentsByRoleAsync(userId, role);
+            return Ok(entities);
+        }
+
+        //[HttpPost("documents")]
+        //public async Task<IActionResult> CreateDocument([FromBody] LoanApplicationDocumentsCreateDto dto)
+        //{
+        //    var entity = await _documentService.CreateAsync(dto);
+        //    return Ok(entity);
+        //}
+
+        //[HttpPost("documents/upload")]
+        //public async Task<IActionResult> UploadDocument([FromForm] IFormFile file, [FromForm] string documentType)
+        //{
+        //    try
+        //    {
+        //        if (file == null || file.Length == 0)
+        //            return BadRequest("No file uploaded");
+
+        //        // Validate file type
+        //        var allowedExtensions = new[] { ".pdf", ".jpg", ".jpeg", ".png", ".doc", ".docx" };
+        //        var fileExtension = Path.GetExtension(file.FileName).ToLowerInvariant();
+        //        if (!allowedExtensions.Contains(fileExtension))
+        //            return BadRequest("Invalid file type. Allowed: PDF, JPG, JPEG, PNG, DOC, DOCX");
+
+        //        // Create unique filename
+        //        var fileName = $"{Guid.NewGuid()}{fileExtension}";
+        //        var uploadsPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
+                
+        //        // Ensure directory exists
+        //        if (!Directory.Exists(uploadsPath))
+        //            Directory.CreateDirectory(uploadsPath);
+
+        //        var filePath = Path.Combine(uploadsPath, fileName);
+        //        var relativePath = $"/uploads/{fileName}";
+
+        //        // Save file
+        //        using (var stream = new FileStream(filePath, FileMode.Create))
+        //        {
+        //            await file.CopyToAsync(stream);
+        //        }
+
+        //        var response = new FileUploadResponseDto
+        //        {
+        //            FilePath = relativePath,
+        //            FileName = file.FileName,
+        //            FileSize = file.Length,
+        //            DocumentType = documentType
+        //        };
+
+        //        return Ok(response);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return StatusCode(500, $"Error uploading file: {ex.Message}");
+        //    }
+        //}
+
+        [HttpPost("documents/upload-with-application")]
+        public async Task<IActionResult> UploadDocumentWithApplication([FromForm] FileUploadDto dto)
+        {
+            try
+            {
+                if (dto.File == null || dto.File.Length == 0)
+                    return BadRequest("No file uploaded");
+
+                // Validate application exists
+                var application = await _loanApplicationService.GetByIdAsync(dto.ApplicationId);
+                if (application == null)
+                    return NotFound("Application not found");
+
+                // Validate file type
+                var allowedExtensions = new[] { ".pdf", ".jpg", ".jpeg", ".png", ".doc", ".docx" };
+                var fileExtension = Path.GetExtension(dto.File.FileName).ToLowerInvariant();
+                if (!allowedExtensions.Contains(fileExtension))
+                    return BadRequest("Invalid file type. Allowed: PDF, JPG, JPEG, PNG, DOC, DOCX");
+
+                // Create unique filename
+                var fileName = $"{dto.ApplicationId}_{dto.DocumentType}_{Guid.NewGuid()}{fileExtension}";
+                var uploadsPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
+                
+                // Ensure directory exists
+                if (!Directory.Exists(uploadsPath))
+                    Directory.CreateDirectory(uploadsPath);
+
+                var filePath = Path.Combine(uploadsPath, fileName);
+                var relativePath = $"/uploads/{fileName}";
+
+                // Save file
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await dto.File.CopyToAsync(stream);
+                }
+
+                // Create document record with application link
+                var documentDto = new LoanApplicationDocumentsCreateDto
+                {
+                    DocumentType = dto.DocumentType,
+                    FilePath = relativePath
+                };
+
+                var document = await _documentService.CreateWithApplicationAsync(dto.ApplicationId, documentDto);
+
+                var response = new FileUploadResponseDto
+                {
+                    FilePath = relativePath,
+                    FileName = dto.File.FileName,
+                    FileSize = dto.File.Length,
+                    DocumentType = dto.DocumentType
+                };
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error uploading file: {ex.Message}");
+            }
         }
 
 
