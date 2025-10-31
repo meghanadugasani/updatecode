@@ -1,5 +1,4 @@
-﻿using APILoanProduct.DTO.Roles;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace APILoanProduct.DTO.LoanApplications
 {
@@ -8,8 +7,7 @@ namespace APILoanProduct.DTO.LoanApplications
         public Guid ReviewId { get; set; }
         public Guid ApplicationId { get; set; }
         public LoanApplicationSummaryDto? LoanApplication { get; set; }
-        public int ManagerUserId { get; set; }
-        public UserMasterReadDto? BranchManager { get; set; }
+        public Guid ManagerUserId { get; set; }
         public DateTime ReviewDate { get; set; }
         public LoanapplicationstatusDto? Status { get; set; }
         public string? Remarks { get; set; }
@@ -20,7 +18,7 @@ namespace APILoanProduct.DTO.LoanApplications
         [Required]
         public Guid ApplicationId { get; set; }
         [Required]
-        public int ManagerUserId { get; set; }
+        public Guid ManagerUserId { get; set; }
         public LoanapplicationstatusDto Status { get; set; } = LoanapplicationstatusDto.Pending;
         [StringLength(250, MinimumLength = 10)]
         public string? Remarks { get; set; }

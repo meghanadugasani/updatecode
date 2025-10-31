@@ -13,7 +13,7 @@ namespace APILoanProduct.Migrations
 {
     [DbContext(typeof(Context))]
     [Migration("20251021121029_removed underscore")]
-    partial class removedunderscore
+    partial class Removedunderscore
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

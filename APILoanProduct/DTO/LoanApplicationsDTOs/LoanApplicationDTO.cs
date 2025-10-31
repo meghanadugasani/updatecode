@@ -1,6 +1,4 @@
-﻿using APILoanProduct.DTO.Branch;
-using APILoanProduct.DTO.Roles;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace APILoanProduct.DTO.LoanApplications
 {
@@ -12,16 +10,14 @@ namespace APILoanProduct.DTO.LoanApplications
         public int TenureYears { get; set; }
         public string? Purpose { get; set; }
         public DateTime AppliedDate { get; set; }
-        public LoanapplicationstatusDto Status { get; set; } // if you keep status in a review entity, adapt accordingly
+        public LoanapplicationstatusDto Status { get; set; }
     }
 
     public class LoanApplicationReadDto
     {
         public Guid ApplicationId { get; set; }
-        public int UserId { get; set; }
-        public UserMasterReadDto? User { get; set; }
+        public Guid UserId { get; set; }
         public int BranchId { get; set; }
-        public BranchReadDto? Branch { get; set; }
         public decimal RequestedAmount { get; set; }
         public int TenureYears { get; set; }
         public string? Purpose { get; set; }
@@ -37,7 +33,7 @@ namespace APILoanProduct.DTO.LoanApplications
     public class LoanApplicationCreateDto
     {
         [Required]
-        public int UserId { get; set; }
+        public Guid UserId { get; set; }
         [Required]
         public int BranchId { get; set; }
         [Range(1000, 1000000000)]

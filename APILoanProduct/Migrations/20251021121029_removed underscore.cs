@@ -5,7 +5,7 @@
 namespace APILoanProduct.Migrations
 {
     /// <inheritdoc />
-    public partial class removedunderscore : Migration
+    public partial class Removedunderscore : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

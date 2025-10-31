@@ -22,7 +22,7 @@ namespace APILoanProduct.Models
         public DateTime CreatedDate {  get; set; } // Auto when created or added
         [Required]
         [MaxLength(500,ErrorMessage ="Product Discription cannot exceed above 500 characters")]
-        public string ProductDescription { get; set; }
+        public string? ProductDescription { get; set; }
 
         // foreign keys navigations
 
